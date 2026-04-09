@@ -1,26 +1,81 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Design Tokens */
+  --spacing: 0.25rem;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  /* Primary — Green (Energy) */
+  --color-eco-green-50: #f0fdf4;
+  --color-eco-green-100: #dcfce7;
+  --color-eco-green-200: #bbf7d0;
+  --color-eco-green-300: #86efac;
+  --color-eco-green-400: #4ade80;
+  --color-eco-green-500: #22c55e;
+  --color-eco-green-600: #16a34a;
+  --color-eco-green-700: #15803d;
+  --color-eco-green-800: #166534;
+  --color-eco-green-900: #14532d;
+
+  /* Secondary — Blue (Water) */
+  --color-eco-blue-50: #eff6ff;
+  --color-eco-blue-100: #dbeafe;
+  --color-eco-blue-200: #bfdbfe;
+  --color-eco-blue-400: #60a5fa;
+  --color-eco-blue-500: #3b82f6;
+  --color-eco-blue-600: #2563eb;
+
+  /* Secondary — Amber (Carbon) */
+  --color-eco-amber-50: #fffbeb;
+  --color-eco-amber-100: #fef3c7;
+  --color-eco-amber-200: #fde68a;
+  --color-eco-amber-400: #fbbf24;
+  --color-eco-amber-500: #f59e0b;
+  --color-eco-amber-600: #d97706;
+
+  /* Surfaces */
+  --color-eco-bg: #f7f8fa;
+  --color-eco-surface: #ffffff;
+  --color-eco-sidebar: #ffffff;
+  --color-eco-border: #e5e7eb;
+  --color-eco-muted: #6b7280;
+  --color-eco-text: #111827;
+  --color-eco-text-secondary: #6b7280;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+/* Restrict source scanning to your code files only to avoid parsing build artifacts */
+@source "../app/**/*.{js,ts,jsx,tsx,mdx}";
+@source "../components/**/*.{js,ts,jsx,tsx,mdx}";
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  body {
+    @apply bg-eco-bg text-eco-text antialiased;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Smooth transitions for interactive elements */
+button,
+a,
+input,
+select {
+  transition: all 0.15s ease;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
 }

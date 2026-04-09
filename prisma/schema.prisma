@@ -1,0 +1,39 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum SiteType {
+  OFFICE
+  FACTORY
+  STORAGE
+  OTHER
+}
+
+model Site {
+  id           String         @id @default(uuid())
+  name         String
+  type         SiteType
+  createdAt    DateTime       @default(now())
+  usageMetrics UsageMetric[]
+}
+
+model UsageMetric {
+  id               String   @id @default(uuid())
+  siteId           String
+  site             Site     @relation(fields: [siteId], references: [id])
+  waterUse         Float
+  energyUse        Float
+  carbonUse        Float
+  measurementStart DateTime
+  measurementEnd   DateTime
+  metadata         Json?
+
+  @@index([siteId])
+  @@index([measurementStart, measurementEnd])
+  @@index([siteId, measurementStart, measurementEnd])
+}
